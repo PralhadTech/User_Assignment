@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import UserData from "./src/components/UserData";
 import Data from "./src/components/Data";
+import Footer from "./src/components/Footer";
 const App = () => {
   return (
     <div className="">
-      {/* <UserData /> */}
       <Data />
+      <Footer />
     </div>
   );
 };
