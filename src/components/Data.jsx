@@ -7,6 +7,7 @@ const Data = () => {
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [genderFilter, setGenderFilter] = useState("");
   const [countryFilter, setCountryFilter] = useState("");
+  const [searchText, setSearchText] = useState(""); // New state for search
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
@@ -50,6 +51,13 @@ const Data = () => {
     setIsLoading(false);
   }
 
+  useEffect(() => {
+    const filtered = users.filter((user) =>
+      user.firstName.toLowerCase().includes(searchText.toLowerCase())
+    );
+    setFilteredUsers(filtered);
+  }, [searchText, users]);
+
   function filterUsers(gender, country) {
     let filtered = users;
     if (gender) {
@@ -69,6 +77,10 @@ const Data = () => {
   const handleCountryChange = (e) => {
     setCountryFilter(e.target.value);
     filterUsers(genderFilter, e.target.value);
+  };
+
+  const handleSearchChange = (e) => {
+    setSearchText(e.target.value); // Update search term
   };
 
   function sortUsers(column) {
@@ -97,7 +109,15 @@ const Data = () => {
       <div className="flex justify-between">
         <h1 className="text-2xl font-bold mb-4">Employees</h1>
         <div className="flex items-center space-x-2">
+          <input
+            type="text"
+            placeholder="Search by First Name"
+            className="border border-gray-300 p-2 rounded text-sm font-normal"
+            onChange={handleSearchChange} // Handle search input change
+            value={searchText}
+          />
           <FilterAltOutlined className="text-red-700" />
+
           <select
             className="border border-gray-300 p-2 rounded text-sm font-normal"
             onChange={handleCountryChange}
