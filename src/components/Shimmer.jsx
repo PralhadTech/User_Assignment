@@ -1,28 +1,20 @@
 import React from "react";
 
 const Shimmer = () => {
+  const shimmerArray = Array(10).fill(null);
+
   return (
-    <div className="container mx-auto px-4">
-      <tr className="border-b animate-pulse">
-        <td className="py-2">
-          <div className="h-12 bg-gray-200 rounded w-16"></div>
-        </td>
-        <td className="px-20 py-2">
-          <div className="h-12 w-12 bg-gray-200 rounded-full"></div>
-        </td>
-        <td className="px-2 py-2">
+    <div className="mx-auto px-4 space-y-4 mt-10 ml-4">
+      {shimmerArray.map((_, index) => (
+        <div key={index} className="flex items-center animate-pulse">
+          <div className="h-12 bg-gray-200 rounded w-16 mr-4"></div>
+          <div className="h-12 w-12 bg-gray-200 rounded-full mr-16"></div>
+          <div className="h-12 bg-gray-200 rounded w-52 mr-10"></div>
+          <div className="h-12 bg-gray-200 rounded w-16 mr-24"></div>
+          <div className="h-12 bg-gray-200 rounded w-56 mr-4"></div>
           <div className="h-12 bg-gray-200 rounded w-52"></div>
-        </td>
-        <td className="px-10 py-2">
-          <div className="h-12 bg-gray-200 rounded w-16"></div>
-        </td>
-        <td className="px-24 py-2">
-          <div className="h-12 bg-gray-200 rounded w-56"></div>
-        </td>
-        <td className="px-4 py-2">
-          <div className="h-12 bg-gray-200 rounded w-52"></div>
-        </td>
-      </tr>
+        </div>
+      ))}
     </div>
   );
 };

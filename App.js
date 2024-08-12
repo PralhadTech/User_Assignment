@@ -1,11 +1,18 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
-import Data from "./src/components/Data";
 import Footer from "./src/components/Footer";
+import Header from "./src/components/Header";
+import Shimmer from "./src/components/Shimmer";
+
+const LazyData = lazy(() => import("./src/components/Data"));
+
 const App = () => {
   return (
-    <div className="">
-      <Data />
+    <div className="container m-auto">
+      <Header />
+      <Suspense fallback={<Shimmer />}>
+        <LazyData />
+      </Suspense>
       <Footer />
     </div>
   );
